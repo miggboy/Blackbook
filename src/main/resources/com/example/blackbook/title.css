@@ -1,0 +1,47 @@
+.root{
+    -fx-background-color:#121212;
+}
+
+.label{
+    -fx-text-fill:#F0F4F8;
+    -fx-font-family:"Arial Rounded MT";
+}
+#subtitle{
+    -fx-font-size: 20;
+}
+
+#author{
+    -fx-font-size:15;
+}
+
+#title{
+    -fx-font-size: 35;
+}
+
+#setup{
+    -fx-font-size: 20;
+    -fx-text-fill:#121212;
+    -fx-background-color:        #3c7fb1,
+                                 linear-gradient(#fafdfe, #e8f5fc),
+                                 linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(one-pass-box , black , 8 , 0.0 , 2 , 0);
+    -fx-font-family: "Arial Rounded MT";
+}
+
+#rec1{
+    -fx-fill: linear-gradient(to right, #121212, #102A43);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#rec2{
+    -fx-fill: linear-gradient(to right, #121212, #102A43);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#rec3{
+    -fx-fill: linear-gradient(to right, #121212, #102A43);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}

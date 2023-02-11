@@ -1,0 +1,15 @@
+#title{
+    -fx-font-family: "Arial Rounded MT";
+    -fx-font-size: 30;
+    -fx-text-fill: #F0F4F8;
+}
+
+#hbox{
+    -fx-background-color: #121212;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#vbox{
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #121212;
+}

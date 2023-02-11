@@ -1,0 +1,40 @@
+.label{
+    -fx-font-family: "Arial Rounded MT";
+    -fx-font-size: 15;
+}
+
+#hbox{
+    -fx-background-color: #121212;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#title{
+    -fx-font-size:18;
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+
+#logo{
+    -fx-font-family: "Arial Rounded MT";
+    -fx-font-size: 30;
+    -fx-text-fill: #F0F4F8;
+}
+
+#submit{
+    -fx-font-size: 15;
+}
+
+#warning{
+    -fx-text-fill: "RED";
+}
+
+.choice-box .menu-item > .label {
+        -fx-text-fill: #121212;
+}
+
+.choice-box > .label {
+    -fx-text-fill: #121212;
+}
+
+.date-picker-popup .month-year-pane .label {
+	-fx-text-fill: #121212;
+}

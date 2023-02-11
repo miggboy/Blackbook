@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+
+<AnchorPane fx:id="pane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#paneDragged" onMousePressed="#panePressed" prefHeight="400.0" prefWidth="600.0" stylesheets="@title.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blackbook.TitleController">
+   <children>
+      <Rectangle fx:id="rec3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="162.0" layoutX="304.0" stroke="BLACK" strokeType="INSIDE" width="92.0" />
+      <Rectangle fx:id="rec2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="162.0" layoutX="236.0" stroke="BLACK" strokeType="INSIDE" width="92.0" />
+      <Rectangle fx:id="rec1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="162.0" stroke="BLACK" strokeType="INSIDE" width="244.0" />
+      <Label fx:id="subtitle" layoutX="54.0" layoutY="95.0" text="Contact Management System" />
+      <Label fx:id="author" layoutX="436.0" layoutY="364.0" text="www.miguelgould.com">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="title" layoutX="54.0" layoutY="44.0" text="BlackBook" />
+      <Button fx:id="setup" layoutX="251.0" layoutY="207.0" mnemonicParsing="false" onAction="#onSetupClick" prefHeight="40.0" prefWidth="106.0" text="Enter">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <SVGPath fx:id="exit" content="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z" fill="#f0f4f8" layoutX="339.0" layoutY="-205.0" onMouseClicked="#onExitClick" scaleX="0.05" scaleY="0.05">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </SVGPath>
+      <SVGPath fx:id="minimize" content="M6 11H18V13H6V11Z" fill="#f0f4f8" layoutX="512.0" layoutY="13.0" onMouseClicked="#onMinimizeClick" scaleX="2.0" scaleY="3.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </SVGPath>
+      <SVGPath content="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.5 8.778c-.441.196-.916.328-1.414.388.509-.305.898-.787 1.083-1.362-.476.282-1.003.487-1.564.597-.448-.479-1.089-.778-1.796-.778-1.59 0-2.758 1.483-2.399 3.023-2.045-.103-3.86-1.083-5.074-2.572-.645 1.106-.334 2.554.762 3.287-.403-.013-.782-.124-1.114-.308-.027 1.14.791 2.207 1.975 2.445-.346.094-.726.116-1.112.042.313.978 1.224 1.689 2.3 1.709-1.037.812-2.34 1.175-3.647 1.021 1.09.699 2.383 1.106 3.773 1.106 4.572 0 7.154-3.861 6.998-7.324.482-.346.899-.78 1.229-1.274z" fill="#f0f4f8" layoutX="488.0" layoutY="300.0" onMouseClicked="#onTwitterIconClick" scaleX="2.0" scaleY="2.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </SVGPath>
+      <SVGPath content="m12 .5c-6.63 0-12 5.28-12 11.792 0 5.211 3.438 9.63 8.205 11.188.6.111.82-.254.82-.567 0-.28-.01-1.022-.015-2.005-3.338.711-4.042-1.582-4.042-1.582-.546-1.361-1.335-1.725-1.335-1.725-1.087-.731.084-.716.084-.716 1.205.082 1.838 1.215 1.838 1.215 1.07 1.803 2.809 1.282 3.495.981.108-.763.417-1.282.76-1.577-2.665-.295-5.466-1.309-5.466-5.827 0-1.287.465-2.339 1.235-3.164-.135-.298-.54-1.497.105-3.121 0 0 1.005-.316 3.3 1.209.96-.262 1.98-.392 3-.398 1.02.006 2.04.136 3 .398 2.28-1.525 3.285-1.209 3.285-1.209.645 1.624.24 2.823.12 3.121.765.825 1.23 1.877 1.23 3.164 0 4.53-2.805 5.527-5.475 5.817.42.354.81 1.077.81 2.182 0 1.578-.015 2.846-.015 3.229 0 .309.21.678.825.56 4.801-1.548 8.236-5.97 8.236-11.173 0-6.512-5.373-11.792-12-11.792z" fill="#f0f4f8" layoutX="546.0" layoutY="300.0" onMouseClicked="#onGithubIconClick" scaleX="2.0" scaleY="2.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </SVGPath>
+      <Circle fill="#1f93ff00" layoutX="500.0" layoutY="312.0" onMouseClicked="#onTwitterIconClick" opacity="0.0" radius="24.0" stroke="BLACK" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Circle>
+      <Circle fill="#1f93ff00" layoutX="558.0" layoutY="312.0" onMouseClicked="#onGithubIconClick" opacity="0.0" radius="24.0" stroke="BLACK" strokeType="INSIDE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Circle>
+   </children>
+</AnchorPane>
