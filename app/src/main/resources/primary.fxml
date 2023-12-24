@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@primary.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.PrimaryController">
+   <children>
+      <BorderPane fx:id="border" prefHeight="400.0" prefWidth="600.0">
+         <left>
+            <VBox fx:id="vbox" prefHeight="344.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+         </left>
+         <top>
+            <HBox fx:id="hbox" fillHeight="false" onMouseDragged="#hboxDragged" onMousePressed="#hboxPressed" prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="title" alignment="CENTER" prefHeight="40.0" prefWidth="163.0" text="BlackBook" />
+                  <TextField editable="false" prefHeight="26.0" prefWidth="366.0" visible="false" />
+                  <ImageView fx:id="minimize" fitHeight="37.0" fitWidth="27.0" onMouseClicked="#onMinimizeClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@minus.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="26.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                     <image>
+                        <Image url="@plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </top>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <ToolBar prefHeight="22.0" prefWidth="520.0" BorderPane.alignment="CENTER">
+                     <items>
+                        <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@search-sm.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="searchField" prefHeight="26.0" prefWidth="118.0" promptText="Search..." />
+                        <TextField editable="false" prefHeight="26.0" prefWidth="335.0" promptText="Search..." visible="false" />
+                        <TextField editable="false" prefHeight="26.0" prefWidth="49.0" promptText="Search..." visible="false" />
+                        <ImageView fitHeight="30.0" fitWidth="32.0" onMouseClicked="#onAddContactClick" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@user-plus-01.png" />
+                           </image>
+                        </ImageView>
+                     </items>
+                  </ToolBar>
+               </top>
+               <center>
+                  <TableView fx:id="contactTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                      <TableColumn fx:id="dateColumn" prefWidth="96.79998779296875" text="Date of Birth" />
+                        <TableColumn fx:id="cityColumn" prefWidth="68.800048828125" text="City" />
+                        <TableColumn fx:id="provColumn" prefWidth="100.00006103515625" text="Province" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <contextMenu>
+                        <ContextMenu fx:id="contextMenu">
+                          <items>
+                            <MenuItem fx:id="deleteItem" mnemonicParsing="false" onAction="#onRemoveClick" text="Delete" />
+                              <MenuItem mnemonicParsing="false" onAction="#onMoreInfoClick" text="More Info" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+               </center>
+            </BorderPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
