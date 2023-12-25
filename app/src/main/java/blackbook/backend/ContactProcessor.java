@@ -17,9 +17,12 @@ public class ContactProcessor{
     //retrieves serialized Contact objects from the contacts.bin file
     public static ObservableList<Contact> getSavedContacts() {
         ObservableList<Contact> list = FXCollections.observableArrayList();
+        String importPath = System.getProperty("user.home");
+        importPath += "/.Blackbook/Contacts.bin";
 
+        System.out.println(importPath);
         try{
-            fis = new FileInputStream("contacts.bin");
+            fis = new FileInputStream(importPath);
             ois = new ObjectInputStream(fis);
             try {
                 while (true) {
@@ -43,8 +46,19 @@ public class ContactProcessor{
 
     //Overwrites the contacts.bin file with a truncated or extended version of the list
     public static boolean overwriteSave(ObservableList<Contact> list){
+        String importPath = System.getProperty("user.home");
+        importPath += "/.Blackbook";
+
+        File f = new File(importPath);
+
+        if(!f.isDirectory()) {
+        	f.mkdir();
+        }
+        
+        importPath += "/Contacts.bin";
+        
         try{
-            fos = new FileOutputStream("contacts.bin");
+            fos = new FileOutputStream(importPath);
             oos = new ObjectOutputStream(fos);
             Contact contact;
             for(int i = 0; i < list.size(); i++){
