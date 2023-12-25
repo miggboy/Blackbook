@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@primary.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.PrimaryController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@CSS/primary.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.PrimaryController">
    <children>
       <BorderPane fx:id="border" prefHeight="400.0" prefWidth="600.0">
          <left>
@@ -28,12 +28,12 @@
                   <TextField editable="false" prefHeight="26.0" prefWidth="366.0" visible="false" />
                   <ImageView fx:id="minimize" fitHeight="37.0" fitWidth="27.0" onMouseClicked="#onMinimizeClick" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@minus.png" />
+                        <Image url="@IMG/minus.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="33.0" fitWidth="26.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                      <image>
-                        <Image url="@plus.png" />
+                        <Image url="@IMG/plus.png" />
                      </image>
                   </ImageView>
                </children>
@@ -49,7 +49,7 @@
                      <items>
                         <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@search-sm.png" />
+                              <Image url="@IMG/search-sm.png" />
                            </image>
                         </ImageView>
                         <TextField fx:id="searchField" prefHeight="26.0" prefWidth="118.0" promptText="Search..." />
@@ -57,14 +57,14 @@
                         <TextField editable="false" prefHeight="26.0" prefWidth="49.0" promptText="Search..." visible="false" />
                         <ImageView fitHeight="30.0" fitWidth="32.0" onMouseClicked="#onAddContactClick" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@user-plus-01.png" />
+                              <Image url="@IMG/user-plus-01.png" />
                            </image>
                         </ImageView>
                      </items>
                   </ToolBar>
                </top>
                <center>
-                  <TableView fx:id="contactTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="contactTable" prefHeight="200.0" prefWidth="200.0" stylesheets="@CSS/primary.css" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
                       <TableColumn fx:id="dateColumn" prefWidth="96.79998779296875" text="Date of Birth" />

@@ -18,7 +18,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("BlackBook");
 
-        URL url = getClass().getResource("/leviathan.png");
+        URL url = getClass().getResource("/IMG/leviathan.png");
         String str = url.toString();
         Image icon = new Image(str);
         stage.getIcons().add(icon);

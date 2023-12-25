@@ -13,15 +13,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" stylesheets="@infoScreen.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.InfoScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.InfoScreenController">
    <top>
-      <HBox fx:id="hbox" alignment="CENTER" onMouseDragged="#hboxDragged" onMousePressed="#hboxPressed" prefHeight="24.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="hbox" alignment="CENTER" onMouseDragged="#hboxDragged" onMousePressed="#hboxPressed" prefHeight="24.0" prefWidth="600.0" stylesheets="@CSS/infoScreen.css" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="title" alignment="CENTER" prefHeight="51.0" prefWidth="163.0" text="BlackBook" />
             <TextField editable="false" prefHeight="26.0" prefWidth="379.0" visible="false" />
             <ImageView fitHeight="40.0" fitWidth="31.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                <image>
-                  <Image url="@plus.png" />
+                  <Image url="@IMG/plus.png" />
                </image>
             </ImageView>
          </children>

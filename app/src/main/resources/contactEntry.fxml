@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="703.0" stylesheets="@contactEntry.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.ContactEntryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="703.0" stylesheets="@CSS/contactEntry.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.ContactEntryController">
    <top>
       <HBox fx:id="hbox" onMouseDragged="#hboxDragged" onMousePressed="#hboxPressed" prefHeight="54.0" prefWidth="324.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
             <TextField editable="false" prefHeight="26.0" prefWidth="478.0" visible="false" />
             <ImageView fx:id="exitButton" fitHeight="41.0" fitWidth="34.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true" rotate="45.0">
                <image>
-                  <Image url="@plus.png" />
+                  <Image url="@IMG/plus.png" />
                </image>
             </ImageView>
          </children>
