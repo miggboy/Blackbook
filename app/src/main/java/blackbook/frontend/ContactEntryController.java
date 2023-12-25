@@ -201,8 +201,6 @@ public class ContactEntryController implements Initializable {
             contact.setStreetAddresses(streetList);
         }
 
-        System.out.println(contact.toString());
-
         ObservableList<Contact> list = ContactProcessor.getSavedContacts();
         list.add(contact);
         ContactProcessor.overwriteSave(list);

@@ -20,7 +20,6 @@ public class ContactProcessor{
         String importPath = System.getProperty("user.home");
         importPath += "/.Blackbook/Contacts.bin";
 
-        System.out.println(importPath);
         try{
             fis = new FileInputStream(importPath);
             ois = new ObjectInputStream(fis);

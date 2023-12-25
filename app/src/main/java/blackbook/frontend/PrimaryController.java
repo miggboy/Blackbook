@@ -93,6 +93,19 @@ public class PrimaryController implements Initializable{
         sortedList.comparatorProperty().bind(contactTable.comparatorProperty());
 
         contactTable.setItems(sortedList);
+        
+        
+		contactTable.setOnMouseClicked(event ->{
+			if(event.getClickCount() == 2) {
+				try {
+					onMoreInfoClick();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+        
+        
     }
 
     @FXML
