@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +19,8 @@ import blackbook.backend.ContactProcessor;
 import blackbook.backend.Email;
 import blackbook.backend.PhoneNumber;
 import blackbook.backend.StreetAddress;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 
 public class ContactEntryController implements Initializable {
     @FXML
@@ -61,6 +65,12 @@ public class ContactEntryController implements Initializable {
     private TextField addressTypeField;
     @FXML
     private Label warning;
+    @FXML
+    private VBox vbox;
+    
+    private MapPoint stLouis = new MapPoint(47.57970323391221, -52.68170682845485);
+    private MapView mapView = createMapView();
+    
     private String[] provinces = {"NL", "PEI", "NS", "NB", "QC",
                                     "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
     private ObservableList<PhoneNumber> phoneList = FXCollections.observableArrayList();
@@ -83,6 +93,25 @@ public class ContactEntryController implements Initializable {
         addressColumn.setCellValueFactory(new PropertyValueFactory<StreetAddress, String>("address"));
         addressTypeColumn.setCellValueFactory(new PropertyValueFactory<StreetAddress, String>("type"));
         streetTable.setItems(streetList);
+        
+        
+        vbox.getChildren().add(mapView);
+        VBox.setVgrow(mapView, Priority.ALWAYS);
+    }
+    
+    public MapView createMapView() {
+    	MapView mapView = new MapView();
+    	mapView.setPrefSize(300,300);
+    	mapView.setZoom(20);
+    	mapView.setCenter(stLouis);
+    	return mapView;
+    }
+    
+    @FXML
+    public void getClickPoint(MouseEvent mouseEvent) {
+    	MapPoint mp = mapView.getMapPosition(mouseEvent.getX(), mouseEvent.getY());
+    	
+    	System.out.println(mp.getLatitude() + " " + mp.getLongitude());
     }
 
     @FXML

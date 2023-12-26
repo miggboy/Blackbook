@@ -3,24 +3,29 @@ package blackbook.frontend;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class TitleController {
+public class TitleController{
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
     private SVGPath minimize;
-
+    
     private double x = 0;
     private double y = 0;
 
@@ -68,4 +73,6 @@ public class TitleController {
         stage.setY(mouseEvent.getScreenY() - y);
         stage.setX(mouseEvent.getScreenX() - x);
     }
+
+
 }
