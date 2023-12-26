@@ -1,3 +1,5 @@
+![Blackbook Logo](https://github.com/miggboy/Blackbook/blob/master/app/src/main/resources/IMG/logo.png)
+
 # Blackbook
 Contact Management System.
 
