@@ -1,3 +1,8 @@
+.label{
+    -fx-font-family: "Arial Rounded MT";
+    -fx-font-size: 15;
+}
+
 #title{
     -fx-font-family: "Arial Rounded MT";
     -fx-font-size: 30;
@@ -10,6 +15,6 @@
 }
 
 #vbox{
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-background-color: #121212;
 }
+

@@ -4,9 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +25,10 @@ import blackbook.backend.ContactProcessor;
 import blackbook.backend.Email;
 import blackbook.backend.PhoneNumber;
 import blackbook.backend.StreetAddress;
+import blackbook.backend.CustomMapLayer;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
+import com.gluonhq.maps.MapLayer;
 
 public class ContactEntryController implements Initializable {
     @FXML
@@ -61,6 +73,14 @@ public class ContactEntryController implements Initializable {
     private TextField addressTypeField;
     @FXML
     private Label warning;
+    @FXML
+    private VBox vbox;
+    
+
+    private MapView mapView = createMapView();
+    private MapPoint mp;
+    private CustomMapLayer cml;
+    
     private String[] provinces = {"NL", "PEI", "NS", "NB", "QC",
                                     "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
     private ObservableList<PhoneNumber> phoneList = FXCollections.observableArrayList();
@@ -83,8 +103,47 @@ public class ContactEntryController implements Initializable {
         addressColumn.setCellValueFactory(new PropertyValueFactory<StreetAddress, String>("address"));
         addressTypeColumn.setCellValueFactory(new PropertyValueFactory<StreetAddress, String>("type"));
         streetTable.setItems(streetList);
+        
+        
+        vbox.getChildren().add(mapView);
+        VBox.setVgrow(mapView, Priority.ALWAYS);
+        
+        vbox.setOnMouseClicked(event -> {
+        	if(event.getClickCount() == 2) {
+            	mp = mapView.getMapPosition(event.getX(), event.getY());
+            	
+            	if(cml == null) {
+            		cml = new CustomMapLayer(mp);
+            		mapView.addLayer(cml);
+                	mapView.flyTo(0, mp, 0.1);
+            		return;
+            	}
+            	
+            	mapView.removeLayer(cml);
+            	cml = new CustomMapLayer(mp);
+            	mapView.addLayer(cml);
+            	mapView.flyTo(0, mp, 0.1);
+        	}
+        });
+        
     }
-
+    
+    public MapView createMapView() {
+    	MapView mapView = new MapView();
+    	mapView.setPrefSize(300,300);
+    	mapView.setZoom(6);
+    	mapView.setCenter(46.4983, -66.1596); //Center of New Brunswick :)
+    	return mapView;
+    }
+    
+    @FXML
+    public void onClearPinClick() {
+    	if(cml != null) {
+    		mapView.removeLayer(cml);
+    		mp = null;
+    	}
+    }
+    
     @FXML
     public void hboxPressed(MouseEvent mouseEvent){
         x = mouseEvent.getSceneX();
@@ -199,6 +258,11 @@ public class ContactEntryController implements Initializable {
 
         if(!(streetList.isEmpty())){
             contact.setStreetAddresses(streetList);
+        }
+        
+        if(mp != null) {
+        	contact.setLatitude(mp.getLatitude());
+        	contact.setLongitude(mp.getLongitude());
         }
 
         ObservableList<Contact> list = ContactProcessor.getSavedContacts();

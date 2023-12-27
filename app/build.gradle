@@ -34,6 +34,7 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+    implementation 'com.gluonhq:maps:2.0.0-ea+6'
 }
 
 application {

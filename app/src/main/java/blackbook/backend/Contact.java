@@ -17,6 +17,8 @@ public class Contact implements Serializable {
     private LinkedList<Email> emails;
     private LinkedList<PhoneNumber> phoneNumbers;
     private LinkedList<StreetAddress> streetAddresses;
+    private Double latitude;
+    private Double longitude;
 
     public Contact(String name) {
         this.name = name;
@@ -27,6 +29,8 @@ public class Contact implements Serializable {
         emails = new LinkedList<>();
         phoneNumbers = new LinkedList<>();
         streetAddresses = new LinkedList<>();
+        latitude = null;
+        longitude = null;
     }
 
     public String getName() {
@@ -59,6 +63,14 @@ public class Contact implements Serializable {
 
     public LinkedList<StreetAddress> getStreetAddresses() {
         return streetAddresses;
+    }
+    
+    public Double getLatitude() {
+    	return latitude;
+    }
+    
+    public Double getLongitude() {
+    	return longitude;
     }
 
     public void setName(String name) {
@@ -113,6 +125,14 @@ public class Contact implements Serializable {
         for(int i = 0; i < size; i++){
             streetAddresses.add(list.get(i));
         }
+    }
+    
+    public void setLatitude(Double lat) {
+    	latitude = lat;
+    }
+    
+    public void setLongitude(Double lon) {
+    	longitude = lon;
     }
 
     public String toString(){
