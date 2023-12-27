@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import blackbook.backend.Contact;
 import blackbook.backend.ContactProcessor;
@@ -75,11 +76,16 @@ public class ContactEntryController implements Initializable {
     private Label warning;
     @FXML
     private VBox vbox;
+    @FXML
+    private Label title;
+    
+    private Contact editCon;
     
 
     private MapView mapView = createMapView();
     private MapPoint mp;
     private CustomMapLayer cml;
+    private CustomMapLayer editLayer;
     
     private String[] provinces = {"NL", "PEI", "NS", "NB", "QC",
                                     "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
@@ -88,6 +94,53 @@ public class ContactEntryController implements Initializable {
     private ObservableList<StreetAddress> streetList = FXCollections.observableArrayList();
     private double x = 0;
     private double y = 0;
+    private boolean editMode = false;
+    
+    public void setValues(Contact contact) {
+        String name = contact.getName();
+        LocalDate DoB = contact.getDoB();
+        Integer age = contact.getAge();
+        String city = contact.getCity();
+        String province = contact.getProvince();
+        LinkedList<PhoneNumber> phoneNumbers = contact.getPhoneNumbers();
+        LinkedList<Email> emails = contact.getEmailList();
+        LinkedList<StreetAddress> streetAddresses = contact.getStreetAddresses();
+        Double latitude = contact.getLatitude();
+        Double longitude = contact.getLongitude();
+        
+        
+        if (DoB != null) {
+            datePicker.setValue(DoB);
+        }
+
+        if(name != null){
+            nameField.setText(name);
+        }
+
+        if(city != null){
+            cityField.setText(city);
+        }
+
+        if(province != null){
+        	provChoiceBox.setValue(province);
+        }
+        
+        if((latitude != null) && (longitude != null)) {
+        	mapView.setCenter(latitude, longitude);
+        	mp = new MapPoint(latitude, longitude);
+        	editLayer = new CustomMapLayer(mp);
+        	mapView.addLayer(editLayer);
+        }
+        
+        phoneList.addAll(phoneNumbers);
+        emailList.addAll(emails);
+        streetList.addAll(streetAddresses);
+        
+        title.setText("Edit Contact:");
+        editMode = true;
+        editCon = contact;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         provChoiceBox.getItems().addAll(provinces);
@@ -110,6 +163,12 @@ public class ContactEntryController implements Initializable {
         
         vbox.setOnMouseClicked(event -> {
         	if(event.getClickCount() == 2) {
+        		if(editLayer != null) {
+        			mapView.removeLayer(editLayer);
+        			editLayer = null;
+        		}
+        		
+        		
             	mp = mapView.getMapPosition(event.getX(), event.getY());
             	
             	if(cml == null) {
@@ -266,9 +325,14 @@ public class ContactEntryController implements Initializable {
         }
 
         ObservableList<Contact> list = ContactProcessor.getSavedContacts();
+        
+        
         list.add(contact);
+        if(editMode) {
+        	list.remove(editCon);
+        }
         ContactProcessor.overwriteSave(list);
-
+        
         Stage stage = (Stage) submit.getScene().getWindow();
         stage.close();
     }

@@ -163,6 +163,16 @@ public class PrimaryController implements Initializable{
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.showAndWait();
+        
+        list.clear();
+
+        ObservableList<Contact> reList = ContactProcessor.getSavedContacts();
+        Contact[] arr = new Contact[reList.size()];
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = reList.get(i);
+        }
+
+        list.addAll(arr);
     }
 
     @FXML
@@ -190,4 +200,3 @@ public class PrimaryController implements Initializable{
         stage.setX(mouseEvent.getScreenX() - x);
     }
 }
-
