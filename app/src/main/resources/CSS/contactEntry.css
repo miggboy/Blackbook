@@ -27,6 +27,10 @@
     -fx-text-fill: "RED";
 }
 
+#vbox{
+    -fx-background-color: #121212;
+}
+
 .choice-box .menu-item > .label {
         -fx-text-fill: #121212;
 }

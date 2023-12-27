@@ -4,11 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +27,7 @@ import blackbook.backend.PhoneNumber;
 import blackbook.backend.StreetAddress;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
+import com.gluonhq.maps.MapLayer;
 
 public class ContactEntryController implements Initializable {
     @FXML
@@ -68,8 +75,10 @@ public class ContactEntryController implements Initializable {
     @FXML
     private VBox vbox;
     
-    private MapPoint stLouis = new MapPoint(47.57970323391221, -52.68170682845485);
+
     private MapView mapView = createMapView();
+    private MapPoint mp;
+    private CustomMapLayer cml;
     
     private String[] provinces = {"NL", "PEI", "NS", "NB", "QC",
                                     "ON", "MB", "SK", "AB", "BC", "YT", "NT", "NU"};
@@ -97,23 +106,72 @@ public class ContactEntryController implements Initializable {
         
         vbox.getChildren().add(mapView);
         VBox.setVgrow(mapView, Priority.ALWAYS);
+        
+        vbox.setOnMouseClicked(event -> {
+        	if(event.getClickCount() == 2) {
+            	mp = mapView.getMapPosition(event.getX(), event.getY());
+            	
+            	if(cml == null) {
+            		cml = new CustomMapLayer(mp);
+            		mapView.addLayer(cml);
+                	mapView.flyTo(0, mp, 0.1);
+            		return;
+            	}
+            	
+            	mapView.removeLayer(cml);
+            	cml = new CustomMapLayer(mp);
+            	mapView.addLayer(cml);
+            	mapView.flyTo(0, mp, 0.1);
+            	
+            	System.out.println(mp.getLatitude() + " " + mp.getLongitude());
+        	}
+        });
+        
     }
     
     public MapView createMapView() {
     	MapView mapView = new MapView();
     	mapView.setPrefSize(300,300);
-    	mapView.setZoom(20);
-    	mapView.setCenter(stLouis);
+    	mapView.setZoom(6);
+    	mapView.setCenter(46.4983, -66.1596); //Center of New Brunswick :)
     	return mapView;
     }
     
-    @FXML
-    public void getClickPoint(MouseEvent mouseEvent) {
-    	MapPoint mp = mapView.getMapPosition(mouseEvent.getX(), mouseEvent.getY());
+    private class CustomMapLayer extends MapLayer{
+    	private Node marker;
+    	private MapPoint p1;
     	
-    	System.out.println(mp.getLatitude() + " " + mp.getLongitude());
+    	public CustomMapLayer(MapPoint mapPoint) {
+    		p1 = mapPoint;
+    		String str = getClass().getResource("/IMG/location.png").toString();
+    		Image img = new Image(str);
+    		marker = new ImageView(img);
+    		
+            ((ImageView) marker).setFitWidth(23);  // Set the width of the marker
+            ((ImageView) marker).setFitHeight(35);
+    		
+    		getChildren().add(marker);
+    	}
+    	
+    	@Override
+    	public void layoutLayer() {
+    		Point2D point = getMapPoint(p1.getLatitude(), p1.getLongitude());
+    		
+    	    double offsetX = -((ImageView) marker).getFitWidth() / 2.0;
+    	    double offsetY = -((ImageView) marker).getFitHeight();
+    		
+    		marker.setTranslateX(point.getX() + offsetX);
+    		marker.setTranslateY(point.getY() + offsetY);
+    	}
+    	
     }
-
+    
+    @FXML
+    public void onClearPinClick() {
+    	if(cml != null)
+    		mapView.removeLayer(cml);
+    }
+    
     @FXML
     public void hboxPressed(MouseEvent mouseEvent){
         x = mouseEvent.getSceneX();
