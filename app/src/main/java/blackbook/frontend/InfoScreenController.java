@@ -8,6 +8,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,9 +19,13 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import blackbook.backend.Contact;
+import blackbook.backend.CustomMapLayer;
 import blackbook.backend.Email;
 import blackbook.backend.PhoneNumber;
 import blackbook.backend.StreetAddress;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
+import com.gluonhq.maps.MapLayer;
 
 public class InfoScreenController implements Initializable {
     @FXML
@@ -55,6 +61,8 @@ public class InfoScreenController implements Initializable {
     private Text cityText;
     @FXML
     private Text provText;
+    @FXML
+    private VBox vbox;
 
     public void setValues(Contact contact){
         String name = contact.getName();
@@ -65,6 +73,8 @@ public class InfoScreenController implements Initializable {
         LinkedList<PhoneNumber> phoneNumbers = contact.getPhoneNumbers();
         LinkedList<Email> emails = contact.getEmailList();
         LinkedList<StreetAddress> streetAddresses = contact.getStreetAddresses();
+        Double latitude = contact.getLatitude();
+        Double longitude = contact.getLongitude();
 
         if (DoB != null) {
             String dobStr = DoB.toString() + " (Age: " + age.toString() + ")";
@@ -82,7 +92,17 @@ public class InfoScreenController implements Initializable {
         if(province != null){
             provText.setText(province);
         }
-
+        
+        if((latitude != null) && (longitude != null)) {
+        	vbox.setVisible(true);
+        	MapView mapView = createMapView(latitude, longitude);
+            vbox.getChildren().add(mapView);
+            MapPoint mp = new MapPoint(latitude, longitude);
+            CustomMapLayer cml = new CustomMapLayer(mp);
+    		mapView.addLayer(cml);
+            VBox.setVgrow(mapView, Priority.ALWAYS);
+        }
+        
         phoneList.addAll(contact.getPhoneNumbers());
         emailList.addAll(contact.getEmailList());
         streetList.addAll(contact.getStreetAddresses());
@@ -103,6 +123,14 @@ public class InfoScreenController implements Initializable {
         streetTable.setItems(streetList);
     }
 
+    public MapView createMapView(double lat, double lon) {
+    	MapView mapView = new MapView();
+    	mapView.setPrefSize(300,300);
+    	mapView.setZoom(15);
+    	mapView.setCenter(lat, lon);
+    	return mapView;
+    }
+    
     @FXML
     protected void onExitClick(){
         Stage stage = (Stage) nameText.getScene().getWindow();

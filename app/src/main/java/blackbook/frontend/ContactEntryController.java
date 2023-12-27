@@ -25,6 +25,7 @@ import blackbook.backend.ContactProcessor;
 import blackbook.backend.Email;
 import blackbook.backend.PhoneNumber;
 import blackbook.backend.StreetAddress;
+import blackbook.backend.CustomMapLayer;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import com.gluonhq.maps.MapLayer;
@@ -122,8 +123,6 @@ public class ContactEntryController implements Initializable {
             	cml = new CustomMapLayer(mp);
             	mapView.addLayer(cml);
             	mapView.flyTo(0, mp, 0.1);
-            	
-            	System.out.println(mp.getLatitude() + " " + mp.getLongitude());
         	}
         });
         
@@ -137,39 +136,12 @@ public class ContactEntryController implements Initializable {
     	return mapView;
     }
     
-    private class CustomMapLayer extends MapLayer{
-    	private Node marker;
-    	private MapPoint p1;
-    	
-    	public CustomMapLayer(MapPoint mapPoint) {
-    		p1 = mapPoint;
-    		String str = getClass().getResource("/IMG/location.png").toString();
-    		Image img = new Image(str);
-    		marker = new ImageView(img);
-    		
-            ((ImageView) marker).setFitWidth(23);  // Set the width of the marker
-            ((ImageView) marker).setFitHeight(35);
-    		
-    		getChildren().add(marker);
-    	}
-    	
-    	@Override
-    	public void layoutLayer() {
-    		Point2D point = getMapPoint(p1.getLatitude(), p1.getLongitude());
-    		
-    	    double offsetX = -((ImageView) marker).getFitWidth() / 2.0;
-    	    double offsetY = -((ImageView) marker).getFitHeight();
-    		
-    		marker.setTranslateX(point.getX() + offsetX);
-    		marker.setTranslateY(point.getY() + offsetY);
-    	}
-    	
-    }
-    
     @FXML
     public void onClearPinClick() {
-    	if(cml != null)
+    	if(cml != null) {
     		mapView.removeLayer(cml);
+    		mp = null;
+    	}
     }
     
     @FXML
@@ -286,6 +258,11 @@ public class ContactEntryController implements Initializable {
 
         if(!(streetList.isEmpty())){
             contact.setStreetAddresses(streetList);
+        }
+        
+        if(mp != null) {
+        	contact.setLatitude(mp.getLatitude());
+        	contact.setLongitude(mp.getLongitude());
         }
 
         ObservableList<Contact> list = ContactProcessor.getSavedContacts();
