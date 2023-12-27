@@ -19,6 +19,7 @@ public class Contact implements Serializable {
     private LinkedList<StreetAddress> streetAddresses;
     private Double latitude;
     private Double longitude;
+    private final int ID;
 
     public Contact(String name) {
         this.name = name;
@@ -31,6 +32,9 @@ public class Contact implements Serializable {
         streetAddresses = new LinkedList<>();
         latitude = null;
         longitude = null;
+        
+        double randomDouble = Math.random();
+        ID = (int) (randomDouble * 1000) + 1;
     }
 
     public String getName() {
@@ -71,6 +75,10 @@ public class Contact implements Serializable {
     
     public Double getLongitude() {
     	return longitude;
+    }
+    
+    public int getID() {
+    	return ID;
     }
 
     public void setName(String name) {
@@ -133,6 +141,16 @@ public class Contact implements Serializable {
     
     public void setLongitude(Double lon) {
     	longitude = lon;
+    }
+    
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        
+        Contact otherContact = (Contact) obj;
+
+        return ID == otherContact.ID;
     }
 
     public String toString(){

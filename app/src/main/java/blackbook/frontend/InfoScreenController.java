@@ -3,7 +3,13 @@ package blackbook.frontend;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -11,14 +17,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import blackbook.backend.Contact;
+import blackbook.backend.ContactProcessor;
 import blackbook.backend.CustomMapLayer;
 import blackbook.backend.Email;
 import blackbook.backend.PhoneNumber;
@@ -52,6 +63,7 @@ public class InfoScreenController implements Initializable {
 
     private double x = 0;
     private double y = 0;
+    private Contact con;
 
     @FXML
     private Text nameText;
@@ -65,14 +77,12 @@ public class InfoScreenController implements Initializable {
     private VBox vbox;
 
     public void setValues(Contact contact){
+    	con = contact;
         String name = contact.getName();
         LocalDate DoB = contact.getDoB();
         Integer age = contact.getAge();
         String city = contact.getCity();
         String province = contact.getProvince();
-        LinkedList<PhoneNumber> phoneNumbers = contact.getPhoneNumbers();
-        LinkedList<Email> emails = contact.getEmailList();
-        LinkedList<StreetAddress> streetAddresses = contact.getStreetAddresses();
         Double latitude = contact.getLatitude();
         Double longitude = contact.getLongitude();
 
@@ -129,6 +139,40 @@ public class InfoScreenController implements Initializable {
     	mapView.setZoom(15);
     	mapView.setCenter(lat, lon);
     	return mapView;
+    }
+    
+    @FXML
+    public void onDeleteClick() {
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.setTitle("Contact Deletion");
+        alert.setHeaderText("Are you sure you want to delete this contact?");
+        alert.setContentText("Once a contact is deleted, you cannot recover it.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        
+        if(result.isPresent() && result.get() == ButtonType.OK){
+        	ObservableList<Contact> list = ContactProcessor.getSavedContacts();
+            list.remove(con);
+            ContactProcessor.overwriteSave(list);
+        }
+        
+        onExitClick();
+    }
+    
+    @FXML
+    public void onEditClick() throws IOException{
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/contactEntry.fxml"));
+        Parent root = loader.load();
+        ContactEntryController contactEntryController = loader.getController();
+        contactEntryController.setValues(con);
+        
+        Stage stage = (Stage) (vbox.getScene().getWindow());
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     @FXML
