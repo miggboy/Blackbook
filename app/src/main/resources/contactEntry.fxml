@@ -33,7 +33,7 @@
          </padding>
       </HBox>
    </top>
-   <left>
+   <bottom>
       <AnchorPane prefHeight="657.0" prefWidth="707.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="title" layoutX="10.0" layoutY="8.0" prefHeight="33.0" prefWidth="199.0" text="Create New Contact:" />
@@ -112,7 +112,7 @@
             <TextField fx:id="emailTypeField" layoutX="639.0" layoutY="255.0" prefHeight="26.0" prefWidth="57.0" />
             <TextField fx:id="addressField" layoutX="463.0" layoutY="456.0" prefHeight="26.0" prefWidth="159.0" promptText="55 Sample Avenue" />
             <TextField fx:id="addressTypeField" layoutX="639.0" layoutY="455.0" prefHeight="26.0" prefWidth="57.0" />
-            <Label fx:id="warning" layoutX="118.0" layoutY="593.0" />
+            <Label fx:id="warning" alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" layoutY="613.0" prefHeight="22.0" prefWidth="204.0" />
             <Button layoutX="392.0" layoutY="79.0" mnemonicParsing="false" onAction="#removePhoneNumber" text="Delete">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -140,5 +140,5 @@
             <Button layoutX="58.0" layoutY="274.0" mnemonicParsing="false" onAction="#onClearPinClick" text="Clear Pin" />
          </children>
       </AnchorPane>
-   </left>
+   </bottom>
 </BorderPane>
