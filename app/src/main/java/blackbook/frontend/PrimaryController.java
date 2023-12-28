@@ -117,6 +117,7 @@ public class PrimaryController implements Initializable{
         stage.setTitle("Contact Entry Scene");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Create Contact");
         stage.showAndWait();
 
         list.clear();
@@ -162,6 +163,7 @@ public class PrimaryController implements Initializable{
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Contact Info");
         stage.showAndWait();
         
         list.clear();

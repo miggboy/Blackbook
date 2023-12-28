@@ -172,6 +172,7 @@ public class InfoScreenController implements Initializable {
         Stage stage = (Stage) (vbox.getScene().getWindow());
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Edit Contact");
         stage.show();
     }
     
