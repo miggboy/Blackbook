@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.InfoScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.InfoScreenController">
    <top>
       <HBox fx:id="hbox" alignment="CENTER" onMouseDragged="#hboxDragged" onMousePressed="#hboxPressed" prefHeight="24.0" prefWidth="600.0" stylesheets="@CSS/infoScreen.css" BorderPane.alignment="CENTER">
          <children>
