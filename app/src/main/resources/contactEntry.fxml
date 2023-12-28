@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="725.0" stylesheets="@CSS/contactEntry.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.ContactEntryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="725.0" stylesheets="@CSS/contactEntry.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackbook.frontend.ContactEntryController">
    <top>
       <HBox fx:id="hbox" onMouseDragged="#hboxDragged" onMousePressed="#hboxPressed" prefHeight="54.0" prefWidth="324.0" BorderPane.alignment="CENTER">
          <children>
