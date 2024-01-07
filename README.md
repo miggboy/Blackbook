@@ -9,7 +9,7 @@ App should be run from app/build/libs, with the package matching your operating 
 Prebuilt jars can be found in releases. Current release version is v1.0.0.
 
 ## Demo Video
-[![Click to Watch Demo Video](https://img.youtube.com/vi/qep-ZDOAbmw&ab/0.jpg)](https://www.youtube.com/watch?v=qep-ZDOAbmw&ab)
+[![Click to Watch Demo Video](https://img.youtube.com/vi/qep-ZDOAbmw/hqdefault.jpg)](https://youtu.be/VKhMJ-SQMnM?si=U3Qgb5dr6tXvRy9r)
 
 ---
 - Author: Miguel Gould
