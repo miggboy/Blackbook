@@ -14,3 +14,5 @@ Prebuilt jars can be found in releases. Current release version is v1.0.0.
 ---
 - Author: Miguel Gould
 ---
+
+Built using JavaFX and Gluon Maps by Gluon.
